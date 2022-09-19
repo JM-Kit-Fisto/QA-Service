@@ -115,7 +115,10 @@ exports.toggleAnswerHelpful = (req, res) => {
 }
 
 exports.toggleAnswerReport = (req, res) => {
-  //TODO:
-  Question.markAnswerReport()
-  .then(result => res.status(200).send(result));
+  Question.markAnswerReport(req.params.answer_id)
+  .then(() => res.sendStatus(201))
+  .catch(err => {
+    console.log('this is err', err)
+    res.sendStatus(400);
+  });
 }

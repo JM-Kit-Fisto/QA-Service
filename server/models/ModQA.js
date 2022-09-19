@@ -35,7 +35,6 @@ exports.insertQuestion = ({body, name, email, product_id}) => {
 }
 
 exports.insertAnswer = ({question_id, body, name, email, photos}) => {
-  //TODO:
   console.log('photos', photos)
   question_id = Number(question_id);
   return db.any(`
@@ -51,7 +50,6 @@ exports.insertAnswer = ({question_id, body, name, email, photos}) => {
 }
 
 exports.markQuestionHelpful = (question_id) => {
-  //TODO:
   question_id = Number(question_id);
   return db.any(`
   UPDATE questions
@@ -76,7 +74,9 @@ exports.markAnswerHelpful = (answer_id) => {
   `);
 }
 
-exports.markAnswerReport = () => {
-  //TODO:
-  return db.any(`SELECT * FROM questions WHERE question_id = 10`);
+exports.markAnswerReport = (answer_id) => {
+  answer_id = Number(answer_id);
+  return db.any(`
+  UPDATE answers SET reported = NOT reported WHERE answer_id = ${answer_id}
+  `);
 }
