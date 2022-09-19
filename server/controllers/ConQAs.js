@@ -68,7 +68,7 @@ exports.getAnswers = (req, res) => {
 
 exports.postQuestions = (req, res) => {
 
-  Question.insertQuestion(req.params.question_id, req.body)
+  Question.insertQuestion(req.body)
   .then(result => res.sendStatus(201))
   .catch(err => {
     console.log('this is err', err)

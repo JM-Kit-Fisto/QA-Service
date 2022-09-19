@@ -4,7 +4,6 @@ const express = require("express");
 const cors = require("cors");
 const { queryParser } = require('express-query-parser')
 // const path = require("path");
-//TODO: Build and require the functions in the controller folder
 const controller = require('./controllers/ConQAs.js');
 
 const app = express();

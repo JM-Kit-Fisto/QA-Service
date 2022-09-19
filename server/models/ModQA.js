@@ -26,21 +26,22 @@ exports.findAllPhotos = (answer_id) => {
 }
 
 exports.insertQuestion = ({body, name, email, product_id}) => {
+  let date = Date.now();
   product_id = Number(product_id);
   return db.any(`
   INSERT INTO questions
-  (question_body, asker_name, asker_email, product_id)
-  VALUES('${body}', '${name}', '${email}', ${product_id})
+  (question_body, asker_name, asker_email, product_id, question_date)
+  VALUES('${body}', '${name}', '${email}', ${product_id}, ${date})
   `);
 }
 
 exports.insertAnswer = ({question_id, body, name, email, photos}) => {
-  console.log('photos', photos)
+  let date = Date.now();
   question_id = Number(question_id);
   return db.any(`
   with first_insert as (
-    insert into answers(question_id, body, answerer_name, answerer_email)
-    values(${question_id}, '${body}', '${name}', '${email}')
+    insert into answers(question_id, body, answerer_name, answerer_email, date)
+    values(${question_id}, '${body}', '${name}', '${email}', ${date})
     RETURNING answer_id
  )
    insert into photos( answer_id, url)
