@@ -19,6 +19,7 @@ exports.getQuestions = (req, res) => {
     Promise.all(answers)
     .then(answers => {
       responseObj.results.forEach((question, index) => {
+        question.date = new Date(Number(question.date)).toISOString()
         let answersArr = answers[index];
         questionAnswers = {};
         answersArr.forEach(answer => {
@@ -28,7 +29,7 @@ exports.getQuestions = (req, res) => {
           questionAnswers[answer.answer_id] = {
             id: answer.answer_id,
             body: answer.body,
-            date: answer.date,
+            date: answer.date = new Date(Number(answer.date)).toISOString(),
             answerer_name: answer.answerer_name,
             helpfulness: answer.helpfulness,
             photos: answer.photos,
@@ -43,7 +44,6 @@ exports.getQuestions = (req, res) => {
 }
 
 exports.getAnswers = (req, res) => {
-  console.log(req.params.question_id)
   let page = req.query.page || 1;
   let count = req.query.count || 5;
   Question.findAllAnswers(req.params.question_id)
@@ -59,6 +59,7 @@ exports.getAnswers = (req, res) => {
       if (answer.photos[0].id === null) {
         answer.photos = [];
       }
+      answer.date = new Date(Number(answer.date)).toISOString()
     })
     response.results = answers.slice(index1, index2);
     res.send(response);
@@ -71,7 +72,7 @@ exports.postQuestions = (req, res) => {
   Question.insertQuestion(req.body)
   .then(result => res.sendStatus(201))
   .catch(err => {
-    console.log('this is err', err)
+    console.log(err)
     res.sendStatus(400);
   })
 }
@@ -82,7 +83,7 @@ exports.postAnswers = (req, res) => {
   Question.insertAnswer(obj)
   .then(() => res.sendStatus(201))
   .catch(err => {
-    console.log('this is err', err)
+    console.log(err)
     res.sendStatus(400);
   });
 }
@@ -91,7 +92,7 @@ exports.toggleQuestionHelpful = (req, res) => {
   Question.markQuestionHelpful(req.params.question_id)
   .then(() => res.sendStatus(201))
   .catch(err => {
-    console.log('this is err', err)
+    console.log(err)
     res.sendStatus(400);
   });
 }
@@ -100,7 +101,7 @@ exports.toggleQuestionReport = (req, res) => {
   Question.markQuestionReport(req.params.question_id)
   .then(() => res.sendStatus(201))
   .catch(err => {
-    console.log('this is err', err)
+    console.log(err)
     res.sendStatus(400);
   });
 }
@@ -118,7 +119,7 @@ exports.toggleAnswerReport = (req, res) => {
   Question.markAnswerReport(req.params.answer_id)
   .then(() => res.sendStatus(201))
   .catch(err => {
-    console.log('this is err', err)
+    console.log(err)
     res.sendStatus(400);
   });
 }
