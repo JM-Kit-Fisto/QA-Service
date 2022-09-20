@@ -7,6 +7,10 @@
     "pg-promise": "^10.12.0"
   },
   "scripts": {
-    "server-dev": "npx nodemon --watch server server/index.js"
+    "server-dev": "npx nodemon --watch server server/index.js",
+    "artillery": "artillery run Testing/test.json"
+  },
+  "devDependencies": {
+    "artillery": "^2.0.0-23"
   }
 }

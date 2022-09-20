@@ -1,0 +1,23 @@
+{
+  "config": {
+    "target": "http://localhost:3050",
+    "phases": [
+      {
+        "duration": 10,
+        "arrivalRate": 1
+      }
+    ]
+  },
+  "scenarios": [
+    {
+      "flow": [
+        {
+          "get": {
+            "url": "/test"
+          }
+        }
+      ]
+    }
+  ]
+}
+

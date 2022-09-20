@@ -22,6 +22,10 @@ app.use(
 );
 
 //Routes
+app.get('/test', (req, res) => {
+  console.log('received get request')
+  res.send('victoria');
+})
 app.get('/qa/questions', controller.getQuestions);
 
 app.get('/qa/questions/:question_id/answers', controller.getAnswers);

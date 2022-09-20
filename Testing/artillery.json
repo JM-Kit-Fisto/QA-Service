@@ -1,0 +1,31 @@
+{
+  "config": {
+    "target": "urlstring",
+    "phases": [
+      {
+        "duration": 10,
+        "arrivalRate": 1
+      }
+    ]
+  },
+  "scenarios": [
+    {
+      "flow": [
+        {
+          "get": {
+            "url": "/"
+          }
+        },
+        {
+          "post": {
+            "url": "/pets",
+            "json": {
+              "name": "fido",
+              "species": "dog"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
