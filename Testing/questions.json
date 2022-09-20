@@ -1,0 +1,34 @@
+{
+  "config": {
+    "target": "http://localhost:3050",
+    "payload": [
+      {
+        "path": "../questions.csv",
+        "fields": ["product_id"],
+        "skipHeader": true
+
+      }
+    ],
+    "phases": [
+      {
+        "duration": 30,
+        "arrivalRate": 1000
+      }
+    ]
+  },
+  "scenarios": [
+    {
+      "flow": [
+        {
+          "get": {
+            "url": "/qa/questions",
+            "qs": {
+              "product_id": "{{ product_id }}"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+
