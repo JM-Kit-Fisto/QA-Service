@@ -12,7 +12,7 @@ const cn = {
 
 
 const db = pgp(cn)
-
+//create an index on answer_id on photos
 db.any(
   `CREATE TABLE IF NOT EXISTS questions (
     question_id SERIAL,
@@ -55,8 +55,16 @@ db.any(
           )
           `
           )
+          .then(() => {
+            db.any(`CREATE INDEX IF NOT EXISTS product ON questions (product_id);`)
+            db.any(`CREATE INDEX IF NOT EXISTS report ON questions (reported);`)
+            db.any(`CREATE INDEX IF NOT EXISTS question ON answers (question_id);`)
+            db.any(`CREATE INDEX IF NOT EXISTS product ON questions (product_id);`)
+            db.any(`CREATE INDEX IF NOT EXISTS answer ON photos (answer_id);`)
+          })
       })
   })
+
 
 
 

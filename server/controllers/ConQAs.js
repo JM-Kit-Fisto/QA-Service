@@ -19,7 +19,7 @@ exports.getQuestions = (req, res) => {
     Promise.all(answers)
     .then(answers => {
       responseObj.results.forEach((question, index) => {
-        question.date = new Date(Number(question.date)).toISOString()
+        question.date = new Date(Number(question['question_date'])).toISOString()
         let answersArr = answers[index];
         questionAnswers = {};
         answersArr.forEach(answer => {
