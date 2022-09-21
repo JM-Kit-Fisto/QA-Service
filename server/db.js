@@ -3,15 +3,16 @@ const pgp = require('pg-promise')();
 
 
 const cn = {
-  host: process.env.HOST,
-  port: process.env.PORT,
-  database: process.env.DATABASE,
-  user: process.env.USER,
-  password: process.env.PASSWORD
+  host: process.env.HOST1,
+  port: process.env.PORT1,
+  database: process.env.DATABASE1,
+  user: process.env.USER1,
+  password: process.env.PASSWORD1,
+  test: process.env.TEST1
 };
 
-
 const db = pgp(cn)
+
 //create an index on answer_id on photos
 db.any(
   `CREATE TABLE IF NOT EXISTS questions (

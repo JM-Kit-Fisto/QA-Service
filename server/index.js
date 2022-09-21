@@ -40,7 +40,7 @@ app.put('/qa/answers/:answer_id/report', controller.toggleAnswerReport);
 
 
 
-const PORT = process.env.SERVER_PORT || 3000;
+const PORT = process.env.SERVER_PORT1 || 3000;
 app.listen(PORT);
 console.log(`Server listening at http://localhost:${PORT}`);
 
