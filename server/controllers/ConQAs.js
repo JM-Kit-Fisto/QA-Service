@@ -1,7 +1,6 @@
 const Question = require("../models/ModQA.js");
 
 
-//TODO: fix the retrieval of dates
 exports.getQuestions = (req, res) => {
   let page = req.query.page || 1;
   let count = req.query.count || 5;
@@ -40,6 +39,10 @@ exports.getQuestions = (req, res) => {
       responseObj.results = questions.slice(index1, index2);
       res.send(responseObj);
     })
+    .catch(err => {
+      console.log(err);
+      res.status(500).send(err);
+    })
   });
 }
 
@@ -64,6 +67,10 @@ exports.getAnswers = (req, res) => {
     response.results = answers.slice(index1, index2);
     res.send(response);
   })
+  .catch(err => {
+    console.log(err);
+    res.status(500).send(err);
+  });
 
 }
 
